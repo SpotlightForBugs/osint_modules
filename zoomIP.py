@@ -11,7 +11,7 @@ def locate():
     resp = data.json()
     print("\nIP address successfully zoomed !\n")
     print("Status: " + resp["status"])
-    if resp["status"] == "erreur d'adresse ip":
+    if resp["status"] == "erreur d'adresse ip": #french lookup tool
         print("E-Message: " + resp["message"])
         sys.exit()
     print("Continent : " + resp["continent"])
