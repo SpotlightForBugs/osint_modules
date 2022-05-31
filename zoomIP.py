@@ -39,5 +39,4 @@ locate()
 
 print('\033[33m')
 
-print("Twitter : @Tenkahashi  | Github : Tenkahashi ")
 
