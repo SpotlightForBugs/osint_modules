@@ -1,5 +1,6 @@
 #!/bin/python3
 # import pyfiglet module
+
 import requests
 import json
 import sys
@@ -14,29 +15,29 @@ def locate():
     if resp["status"] == "erreur d'adresse ip": #french lookup tool
         print("E-Message: " + resp["message"])
         sys.exit()
-    print("Continent : " + resp["continent"])
-    print("Country : " + resp["country"])
-    print("Region: " + resp["region"])
-    print("Region Name : " + resp["regionName"])
-    print("City : " + resp["city"])
-    print("District : " + resp["district"])
-    print("Zip : " + resp["zip"])
-    print("Latitude : " + str(resp["lat"]))
-    print("Longitude : " + str(resp["lon"]))
-    print("Timezone : " + resp["timezone"])
-    print("Currency : " + resp["currency"])
-    print("ISP : " + resp["isp"])
-    print("ORG : " + resp["org"])
-    print("AS : " + resp["as"])
-    print("AS Name : " + resp["asname"])
-    print("Reverse : " + resp["reverse"])
-    print("Mobile : " + str(resp["mobile"]))
-    print("Proxy : " + str(resp["proxy"]))
+    continent = resp["continent"]
+    country = resp["country"]
+    region = resp["region"]
+    regionname = resp["regionName"]
+    city = resp["city"]
+    district = resp["district"]
+    zip = resp["zip"]
+    lat = str(resp["lat"])
+    lon= str(resp["lon"])
+    timezone = resp["timezone"]
+    currency = resp["currency"]
+    isp = resp["isp"]
+    org = resp["org"]
+    asp = resp["as"]
+    aspname = resp["asname"]
+    reverse_lookup =  resp["reverse"]
+    mobile = str(resp["mobile"])
+    proxy_used = str(resp["proxy"])
 
 
 ip = input("\nIP/Url = ")
 locate()
-
+print(continent,country)
 print('\033[33m')
 
 
