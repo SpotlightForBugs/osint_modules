@@ -1,6 +1,7 @@
 #!/bin/python3
 # import pyfiglet module
 import argparse
+from ast import Store
 import requests
 import json
 import sys
@@ -12,8 +13,8 @@ def locate():
     resp = data.json()
     
     print("Status: " + resp["status"])
-    if resp["status"] == "erreur d'adresse ip": #french lookup tool
-        print("E-Message: " + resp["message"])
+    if resp["status"] == "fail": 
+        print("Error: " + resp["message"])
         sys.exit()
     continent = resp["continent"]
     country = resp["country"]
@@ -62,6 +63,9 @@ def locate():
 parser = argparse.ArgumentParser()
 g = parser.add_mutually_exclusive_group()
 
+parser.add_argument(
+     '-ip','-url',dest='target',action='store',help='specify the target to use CLI'
+ )
 g.add_argument(
     '-txt',dest='txt',
     action='store_true',
@@ -76,9 +80,11 @@ g.add_argument(
 
 args = parser.parse_args()
 
-ip = input("\nIP/Url = ")
+if not args.target:
+    ip = input("\nIP/Url = ")
+if args.target:
+    ip = args.target
 locate()
-
 print('\033[33m')
 
 
