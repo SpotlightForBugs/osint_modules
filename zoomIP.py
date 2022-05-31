@@ -1,6 +1,7 @@
 #!/bin/python3
 # import pyfiglet module
-
+import argparse
+from turtle import goto
 import requests
 import json
 import sys
@@ -33,26 +34,48 @@ def locate():
     reverse_lookup =  resp["reverse"]
     mobile = str(resp["mobile"])
     proxy_used = str(resp["proxy"])
-    print("Continent : "+ continent)
-    print("Country : "+ country)
-    print("Region: " + region)
-    print("Region Name : " + regionname)
-    print("City : " + city)
-    print("District : " + district)
-    print("Zip : " + zip)
-    print("Latitude : " +lat)
-    print("Longitude : " + lon)
-    print("Timezone : " + timezone)
-    print("Currency : " + currency)
-    print("ISP : " + isp)
-    print("ORG : " + org)
-    print("AS : " + asp)
-    print("AS Name : " + aspname)
-    print("Reverse : " + reverse_lookup)
-    print("Mobile : " +mobile)
-    print("Proxy : " + proxy_used)
+    if args.json:
+        print(resp)
+    else:
+        print("Continent : "+ continent)
+        print("Country : "+ country)
+        print("Region: " + region)
+        print("Region Name : " + regionname)
+        print("City : " + city)
+        print("District : " + district)
+        print("Zip : " + zip)
+        print("Latitude : " +lat)
+        print("Longitude : " + lon)
+        print("Timezone : " + timezone)
+        print("Currency : " + currency)
+        print("ISP : " + isp)
+        print("ORG : " + org)
+        print("AS : " + asp)
+        print("AS Name : " + aspname)
+        print("Reverse : " + reverse_lookup)
+        print("Mobile : " +mobile)
+        print("Proxy : " + proxy_used)
     
+        
+   
+        
+  
+parser = argparse.ArgumentParser()
+g = parser.add_mutually_exclusive_group()
 
+g.add_argument(
+    '-txt',dest='txt',
+    action='store_true',
+    help='output as text',
+    
+)
+g.add_argument(
+    '-json', dest='json',
+    action='store_true',
+    help='output as json',
+)
+
+args = parser.parse_args()
 
 ip = input("\nIP/Url = ")
 locate()
