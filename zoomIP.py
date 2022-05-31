@@ -1,7 +1,6 @@
 #!/bin/python3
 # import pyfiglet module
 import argparse
-from ast import Store
 import requests
 import json
 import sys
