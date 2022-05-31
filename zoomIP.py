@@ -33,11 +33,30 @@ def locate():
     reverse_lookup =  resp["reverse"]
     mobile = str(resp["mobile"])
     proxy_used = str(resp["proxy"])
+    print("Continent : "+ continent)
+    print("Country : "+ country)
+    print("Region: " + region)
+    print("Region Name : " + regionname)
+    print("City : " + city)
+    print("District : " + district)
+    print("Zip : " + zip)
+    print("Latitude : " +lat)
+    print("Longitude : " + lon)
+    print("Timezone : " + timezone)
+    print("Currency : " + currency)
+    print("ISP : " + isp)
+    print("ORG : " + org)
+    print("AS : " + asp)
+    print("AS Name : " + aspname)
+    print("Reverse : " + reverse_lookup)
+    print("Mobile : " +mobile)
+    print("Proxy : " + proxy_used)
+    
 
 
 ip = input("\nIP/Url = ")
 locate()
-print(continent,country)
+
 print('\033[33m')
 
 
