@@ -5,7 +5,7 @@ import requests
 import json
 import sys
 
-print('\033[32m') 
+print('') 
 
 def locate():
     data = requests.get("http://ip-api.com/json/" + ip + "?fields=status,message,continent,country,region,regionName,city,district,zip,lat,lon,timezone,currency,isp,org,as,asname,reverse,mobile,proxy")
@@ -23,7 +23,7 @@ def locate():
     district = resp["district"]
     zip = resp["zip"]
     lat = str(resp["lat"])
-    lon= str(resp["lon"])
+    lon = str(resp["lon"])
     timezone = resp["timezone"]
     currency = resp["currency"]
     isp = resp["isp"]
@@ -33,7 +33,10 @@ def locate():
     reverse_lookup =  resp["reverse"]
     mobile = str(resp["mobile"])
     proxy_used = str(resp["proxy"])
-    if args.json:
+    if args.gmap:
+    	print("\nIP/Url = "+ ip)
+    	print("http://www.google.com/maps/place/"+ lat +','+ lon)
+    elif args.json:
         print(resp)
     else:
         print("Continent : "+ continent)
@@ -45,6 +48,7 @@ def locate():
         print("Zip : " + zip)
         print("Latitude : " +lat)
         print("Longitude : " + lon)
+        print("http://www.google.com/maps/place/"+ lat +','+ lon)
         print("Timezone : " + timezone)
         print("Currency : " + currency)
         print("ISP : " + isp)
@@ -77,6 +81,10 @@ g.add_argument(
     help='output as json',
 )
 
+g.add_argument(
+	'-maps','-m',dest='gmap',action='store_true',help='only show the Google maps url'
+	)
+
 args = parser.parse_args()
 
 if not args.target:
@@ -84,6 +92,3 @@ if not args.target:
 if args.target:
     ip = args.target
 locate()
-print('\033[33m')
-
-
