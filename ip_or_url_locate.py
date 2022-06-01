@@ -100,4 +100,4 @@ if not args.target:
     ip = input("\nIP/Url = ")
 if args.target:
     ip = args.target
-locate()
+locate() #lets run it :D
