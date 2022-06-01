@@ -4,6 +4,7 @@ what3words
 ipaddress
 requests
 urllib
+lxml
 json
 sys
 bs4
