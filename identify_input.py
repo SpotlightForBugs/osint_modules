@@ -11,12 +11,13 @@ import what3words
 
 parser=argparse.ArgumentParser()
 parser.add_argument(
-dest='input'
+dest='input',help="the input, '_SPACE_' will be handled as spaces ' '"
 )
 args = parser.parse_args()
 
 input_raw = args.input
-input = input_raw
+input = input_raw.replace('_SPACE_',' ')
+
 
 
 
@@ -54,13 +55,11 @@ def is_w3w_address():
         return True
     
 def is_first_and_last_name():
-    
+        
+    regex_name = re.compile(r' ([a-zÄÖÜäöüß]+)( [a-zÄÖÜäöüß]+)*( [a-zÄÖÜäöüß]+)*$',re.IGNORECASE)
+    is_name = regex_name.search(input)
   
-    
-    regex_name = re.compile(r' ([a-z]+)( [a-z]+)*( [a-z]+)*$',re.IGNORECASE)
-    res = regex_name.search(input)
-  
-    if res: 
+    if is_name: 
         return True
           
     else: 
@@ -94,10 +93,10 @@ if input_is_ip_address == False:        #if not,
 
 
 
-print("reachable url : "+input_is_url)
-print("ip address: "+input_is_ip_address)
-print("w3w address: "+input_is_w3w_address)
-print("is first and lastname",input_is_first_and_last_name)
+print("reachable url >",input_is_url)
+print("ip address >",input_is_ip_address)
+print("w3w address >",input_is_w3w_address)
+print("is first and lastname >",input_is_first_and_last_name)
  
 
 
