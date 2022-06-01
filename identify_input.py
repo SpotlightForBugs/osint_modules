@@ -3,7 +3,6 @@
 ##a module to get to know what kind of input is given##
 
 import argparse
-from distutils.log import error
 import urllib.request
 import tldextract
 import ipaddress
