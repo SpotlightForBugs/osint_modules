@@ -4,13 +4,19 @@ import argparse
 import requests
 import json
 import sys
+import os
+import console
+print()
 
-print('') 
+def clear():
+	os.system("clear") # Linux - OSX 
+	os.system("cls") # Windows 
+	#fallback method
+	console.clear()
 
 def locate():
     data = requests.get("http://ip-api.com/json/" + ip + "?fields=status,message,continent,country,region,regionName,city,district,zip,lat,lon,timezone,currency,isp,org,as,asname,reverse,mobile,proxy")
     resp = data.json()
-    
     print("Status: " + resp["status"])
     if resp["status"] == "fail": 
         print("Error: " + resp["message"])
@@ -59,8 +65,10 @@ def locate():
         print("Mobile : " +mobile)
         print("Proxy : " + proxy_used)
     
-        
-   
+       
+
+
+
  #argparse start       
   
 parser = argparse.ArgumentParser()
@@ -88,7 +96,7 @@ g.add_argument(
 args = parser.parse_args()
 
 #argparse stop
-
+clear()
 if not args.target:
     ip = input("\nIP/Url = ")
 if args.target:
