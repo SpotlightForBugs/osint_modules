@@ -4,4 +4,4 @@
 
 import sys
 input_raw = sys.argv
-input = list_of_args[0]
+input = input_raw[0]
