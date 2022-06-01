@@ -5,7 +5,7 @@
 import argparse
 import urllib.request
 import tldextract
-
+import ipaddress
 
 parser=argparse.ArgumentParser()
 parser.add_argument(
@@ -37,8 +37,18 @@ def is_url():
             return False
 
 
-input_is_url = is_url()
+def is_ip_address():
+    try:
+        ip = ipaddress.ip_address(input)
+        return True
+    except ValueError:
+        return False
+    
 
+input_is_url = is_url()
+input_is_ip_address = is_ip_address()
+
+print(input_is_url,input_is_ip_address) 
 
 
 
