@@ -3,6 +3,7 @@
 ##a module to get to know what kind of input is given##
 
 import argparse
+import re
 import urllib.request
 import tldextract
 import ipaddress
@@ -52,30 +53,51 @@ def is_w3w_address():
     else:
         return True
     
+def is_first_and_last_name():
     
+  
+    
+    regex_name = re.compile(r' ([a-z]+)( [a-z]+)*( [a-z]+)*$',re.IGNORECASE)
+    res = regex_name.search(input)
+  
+    if res: 
+        return True
+          
+    else: 
+        return False
+  
 
 
 #vars are False as standard
 input_is_ip_address = False
 input_is_url = False
 input_is_w3w_address = False
+input_is_first_and_last_name = False
 
 
 
 
 #end of vars
 
-input_is_ip_address = is_ip_address()
-if input_is_ip_address == False:
-    if is_w3w_address() == True:
+input_is_ip_address = is_ip_address() #is it an ip address?
+if input_is_ip_address == False:        #if not,
+    if is_w3w_address() == True:        #is it a w3w address?
         input_is_w3w_address = True
+    if is_first_and_last_name() == True:
+        input_is_first_and_last_name = True 
     else:
-        input_is_url = is_url() #only check for url if input is not an ip address to make the script faster
+        input_is_url = is_url() #only check for url if input is not something else to make the script faster
+
+
+
+
+
 
 
 print("reachable url : "+input_is_url)
 print("ip address: "+input_is_ip_address)
 print("w3w address: "+input_is_w3w_address)
+print("is first and lastname",input_is_first_and_last_name)
  
 
 
