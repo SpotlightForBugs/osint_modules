@@ -1,9 +1,10 @@
 argparserequests
-urllib
 tldextract
-ipaddress
 what3words
+ipaddress
 requests
+urllib
 json
 sys
+bs4
 os
