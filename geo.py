@@ -82,7 +82,7 @@ g.add_argument(
 )
 
 g.add_argument(
-	'-maps','-m',dest='gmap',action='store_true',help='only show the Google maps url'
+	'-maps','-m',dest='gmap',action='store_true',help='only shows the Google maps url'
 	)
 
 args = parser.parse_args()
