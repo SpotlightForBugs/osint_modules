@@ -61,7 +61,7 @@ def locate():
     
         
    
-        
+ #argparse start       
   
 parser = argparse.ArgumentParser()
 g = parser.add_mutually_exclusive_group()
@@ -86,6 +86,8 @@ g.add_argument(
 	)
 
 args = parser.parse_args()
+
+#argparse stop
 
 if not args.target:
     ip = input("\nIP/Url = ")
