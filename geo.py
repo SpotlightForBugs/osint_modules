@@ -5,14 +5,14 @@ import requests
 import json
 import sys
 import os
-import console
+
 print()
 
 def clear():
-	os.system("clear") # Linux - OSX 
-	os.system("cls") # Windows 
-	#fallback method
-	console.clear()
+   command = 'clear'
+    if os.name in ('nt', 'dos'):  #Windows
+        command = 'cls'
+    os.system(command)
 
 def locate():
     data = requests.get("http://ip-api.com/json/" + ip + "?fields=status,message,continent,country,region,regionName,city,district,zip,lat,lon,timezone,currency,isp,org,as,asname,reverse,mobile,proxy")
