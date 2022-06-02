@@ -1,4 +1,4 @@
-argparserequests
+argparse
 tldextract
 what3words
 ipaddress
