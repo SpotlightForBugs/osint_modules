@@ -114,12 +114,6 @@ if input_is_ip_address == False:        #if not,
     elif is_username_on_well_known_pages() == True:
         input_is_username_on_well_known_pages = True #only check for url if input is not something else to make the script faster
 
-        
-
-
-
-
-
 
 print("reachable url >",input_is_url)
 print("ip address >",input_is_ip_address)
