@@ -67,12 +67,30 @@ def is_first_and_last_name():
   
 
 
+
+def is_username_on_well_known_pages():
+    username_lookup_url = "https://knowem.com/checkusernames.php?u="+input
+    open_lookup_url = urllib.request.urlopen(username_lookup_url)
+    is_username_encrypted_output = open_lookup_url.read()
+
+    username_resp = is_username_encrypted_output.decode("utf8")
+    open_lookup_url.close()
+
+    if "notavailable" in username_resp:
+        return True
+    else:
+        return False
+
+    
+
+
+
 #vars are False as standard
 input_is_ip_address = False
 input_is_url = False
 input_is_w3w_address = False
 input_is_first_and_last_name = False
-
+input_is_username_on_well_known_pages = False
 
 
 
@@ -82,11 +100,14 @@ input_is_ip_address = is_ip_address() #is it an ip address?
 if input_is_ip_address == False:        #if not,
     if is_w3w_address() == True:        #is it a w3w address?
         input_is_w3w_address = True
-    if is_first_and_last_name() == True:
+    elif is_first_and_last_name() == True:
         input_is_first_and_last_name = True 
-    else:
-        input_is_url = is_url() #only check for url if input is not something else to make the script faster
+    elif is_url() == True:
+        input_is_url = True #only check for url if input is not something else to make the script faster
+    elif is_username_on_well_known_pages() == True:
+        input_is_username_on_well_known_pages = True #only check for url if input is not something else to make the script faster
 
+        
 
 
 
@@ -97,6 +118,7 @@ print("reachable url >",input_is_url)
 print("ip address >",input_is_ip_address)
 print("w3w address >",input_is_w3w_address)
 print("is first and lastname >",input_is_first_and_last_name)
+print("is username on well-known pages >",input_is_username_on_well_known_pages)
  
 
 
