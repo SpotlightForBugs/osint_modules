@@ -84,7 +84,7 @@ def is_username_on_well_known_pages():
 
     
 def is_email():
-    email_pattern = "^[a-zA-Z0-9-_]+@[a-zA-Z0-9-]+\.[a-z]{2,6}$"
+    email_pattern = "^[a-zA-Z0-9-_.]+@[a-zA-Z0-9-]+\.[a-z]{2,6}$"
     if re.match(email_pattern,input):
           return True
     return False
