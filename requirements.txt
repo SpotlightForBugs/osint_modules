@@ -5,6 +5,5 @@ ipaddress
 requests
 urllib3
 lxml
-sys
 bs4
-os
+
