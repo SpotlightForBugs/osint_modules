@@ -3,7 +3,7 @@ tldextract
 what3words
 ipaddress
 requests
-urllib
+urllib3
 lxml
 json
 sys
