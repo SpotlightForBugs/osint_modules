@@ -8,6 +8,7 @@ import urllib.request
 import tldextract
 import ipaddress
 import what3words
+from verify_email import verify_email
 
 parser=argparse.ArgumentParser()
 parser.add_argument(
@@ -76,13 +77,18 @@ def is_username_on_well_known_pages():
     username_resp = is_username_encrypted_output.decode("utf8")
     open_lookup_url.close()
 
-    if "notavailable" in username_resp:
+    if "notavailable" in username_resp and not "but we ran into an error" in username_resp:
         return True
     else:
         return False
 
     
-
+def is_email():
+    email_pattern = "^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+\.[a-z]{1,3}$"
+    if re.match(email_pattern,input):
+          return True
+    return False
+        
 
 
 #vars are False as standard
@@ -91,18 +97,19 @@ input_is_url = False
 input_is_w3w_address = False
 input_is_first_and_last_name = False
 input_is_username_on_well_known_pages = False
-
+input_is_email = False
 
 
 #end of vars
 
+input_is_email = is_email()
 input_is_ip_address = is_ip_address() #is it an ip address?
 if input_is_ip_address == False:        #if not,
     if is_w3w_address() == True:        #is it a w3w address?
         input_is_w3w_address = True
     elif is_first_and_last_name() == True:
         input_is_first_and_last_name = True 
-    elif is_url() == True:
+    elif input_is_email == False and is_url()  == True: #Do not check the subdoamins of the email-address
         input_is_url = True #only check for url if input is not something else to make the script faster
     elif is_username_on_well_known_pages() == True:
         input_is_username_on_well_known_pages = True #only check for url if input is not something else to make the script faster
@@ -118,8 +125,9 @@ print("reachable url >",input_is_url)
 print("ip address >",input_is_ip_address)
 print("w3w address >",input_is_w3w_address)
 print("is first and lastname >",input_is_first_and_last_name)
+print ("is an email-address >",input_is_email)
 print("is username on well-known pages >",input_is_username_on_well_known_pages)
- 
+
 
 
 
