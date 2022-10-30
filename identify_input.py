@@ -30,11 +30,11 @@ def is_url():
 
     url = input
     parsed = tldextract.extract(url)
-    domain_without_proto = parsed.domain + '.' + parsed.suffix
-    domain = 'http://' + domain_without_proto
+    domain_without_proto = f'{parsed.domain}.{parsed.suffix}'
+    domain = f'http://{domain_without_proto}'
     try:
         http_status = urllib.request.urlopen(domain).getcode()
-     
+
         if http_status == 200:
             return True
     except:
@@ -50,44 +50,33 @@ def is_ip_address():
     
 def is_w3w_address():
     w3w_res = geocoder.convert_to_coordinates(input)
-    if "error" in w3w_res:
-        return False
-    else:
-        return True
+    return "error" not in w3w_res
     
 def is_first_and_last_name():
         
     regex_name = re.compile(r' ([a-zÄÖÜäöüß]+)( [a-zÄÖÜäöüß]+)*( [a-zÄÖÜäöüß]+)*$',re.IGNORECASE)
-    is_name = regex_name.search(input)
-  
-    if is_name: 
-        return True
-          
-    else: 
-        return False
+    return bool(is_name := regex_name.search(input))
   
 
 
 
 def is_username_on_well_known_pages():
-    username_lookup_url = "https://knowem.com/checkusernames.php?u="+input
+    username_lookup_url = f"https://knowem.com/checkusernames.php?u={input}"
     open_lookup_url = urllib.request.urlopen(username_lookup_url)
     is_username_encrypted_output = open_lookup_url.read()
 
     username_resp = is_username_encrypted_output.decode("utf8")
     open_lookup_url.close()
 
-    if "notavailable" in username_resp and not "but we ran into an error" in username_resp:
-        return True
-    else:
-        return False
+    return (
+        "notavailable" in username_resp
+        and "but we ran into an error" not in username_resp
+    )
 
     
 def is_email():
     email_pattern = "^[a-zA-Z0-9-_.]+@[a-zA-Z0-9-]+\.[a-z]{2,6}$"
-    if re.match(email_pattern,input):
-          return True
-    return False
+    return bool(re.match(email_pattern,input))
         
 
 

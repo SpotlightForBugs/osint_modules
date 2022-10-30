@@ -14,55 +14,57 @@ if os.name in ('nt', 'dos'):  #Windows
 os.system(command)
 
 def locate():
-    data = requests.get("http://ip-api.com/json/" + ip + "?fields=status,message,continent,country,region,regionName,city,district,zip,lat,lon,timezone,currency,isp,org,as,asname,reverse,mobile,proxy")
-    resp = data.json()
-    print("Status: " + resp["status"])
-    if resp["status"] == "fail": 
-        print("Error: " + resp["message"])
-        sys.exit()
-    continent = resp["continent"]
-    country = resp["country"]
-    region = resp["region"]
-    regionname = resp["regionName"]
-    city = resp["city"]
-    district = resp["district"]
-    zip = resp["zip"]
-    lat = str(resp["lat"])
-    lon = str(resp["lon"])
-    timezone = resp["timezone"]
-    currency = resp["currency"]
-    isp = resp["isp"]
-    org = resp["org"]
-    asp = resp["as"]
-    aspname = resp["asname"]
-    reverse_lookup =  resp["reverse"]
-    mobile = str(resp["mobile"])
-    proxy_used = str(resp["proxy"])
-    if args.gmap:
-    	print("\nIP/Url = "+ ip)
-    	print("http://www.google.com/maps/place/"+ lat +','+ lon)
-    elif args.json:
-        print(resp)
-    else:
-        print("Continent : "+ continent)
-        print("Country : "+ country)
-        print("Region: " + region)
-        print("Region Name : " + regionname)
-        print("City : " + city)
-        print("District : " + district)
-        print("Zip : " + zip)
-        print("Latitude : " +lat)
-        print("Longitude : " + lon)
-        print("http://www.google.com/maps/place/"+ lat +','+ lon)
-        print("Timezone : " + timezone)
-        print("Currency : " + currency)
-        print("ISP : " + isp)
-        print("ORG : " + org)
-        print("AS : " + asp)
-        print("AS Name : " + aspname)
-        print("Reverse : " + reverse_lookup)
-        print("Mobile : " +mobile)
-        print("Proxy : " + proxy_used)
+   data = requests.get(
+       f"http://ip-api.com/json/{ip}?fields=status,message,continent,country,region,regionName,city,district,zip,lat,lon,timezone,currency,isp,org,as,asname,reverse,mobile,proxy"
+   )
+   resp = data.json()
+   print("Status: " + resp["status"])
+   if resp["status"] == "fail": 
+       print("Error: " + resp["message"])
+       sys.exit()
+   lat = str(resp["lat"])
+   lon = str(resp["lon"])
+   if args.gmap:
+      print("\nIP/Url = "+ ip)
+      print(f"http://www.google.com/maps/place/{lat},{lon}")
+   elif args.json:
+       print(resp)
+   else:
+      continent = resp["continent"]
+      print(f"Continent : {continent}")
+      country = resp["country"]
+      print(f"Country : {country}")
+      region = resp["region"]
+      print(f"Region: {region}")
+      regionname = resp["regionName"]
+      print(f"Region Name : {regionname}")
+      city = resp["city"]
+      print(f"City : {city}")
+      district = resp["district"]
+      print(f"District : {district}")
+      zip = resp["zip"]
+      print(f"Zip : {zip}")
+      print(f"Latitude : {lat}")
+      print(f"Longitude : {lon}")
+      print(f"http://www.google.com/maps/place/{lat},{lon}")
+      timezone = resp["timezone"]
+      print(f"Timezone : {timezone}")
+      currency = resp["currency"]
+      print(f"Currency : {currency}")
+      isp = resp["isp"]
+      print(f"ISP : {isp}")
+      org = resp["org"]
+      print(f"ORG : {org}")
+      asp = resp["as"]
+      print(f"AS : {asp}")
+      aspname = resp["asname"]
+      print(f"AS Name : {aspname}")
+      reverse_lookup =  resp["reverse"]
+      print(f"Reverse : {reverse_lookup}")
+      mobile = str(resp["mobile"])
+      print(f"Mobile : {mobile}")
+      proxy_used = str(resp["proxy"])
+      print(f"Proxy : {proxy_used}")
     
        
 
